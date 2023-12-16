@@ -4,6 +4,8 @@ import com.enigma.wms.warungMakanSamudra.Entity.Branch;
 import com.enigma.wms.warungMakanSamudra.Entity.ProductPrice;
 import lombok.*;
 
+import java.util.List;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -17,5 +19,6 @@ public class ProductResponse {
     private String productName;
     private Double price;
     private BranchResponse branchResponse;
+
 
 }

@@ -31,7 +31,8 @@ public class Product {
 
 
     // Untuk Halaman Page (Pagination) (productPrices)
-    @OneToMany(mappedBy = "productId") // nama nya harus sama keproduk price
+    // nama nya harus sama keproduk price
+    @OneToMany(mappedBy = "productId" ,cascade = CascadeType.ALL ,orphanRemoval = true)
     private List<ProductPrice> productPrices;
 
     @Override

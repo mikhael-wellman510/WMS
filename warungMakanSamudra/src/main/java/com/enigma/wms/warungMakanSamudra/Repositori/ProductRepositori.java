@@ -17,4 +17,5 @@ public interface ProductRepositori extends JpaRepository<Product,String>, JpaSpe
     //Todo -> tambahkan ini jika ingin mencari Produk berdasarkan Branch Id
 List<Product> findAllByBranchId(Branch branch);
 
+
 }

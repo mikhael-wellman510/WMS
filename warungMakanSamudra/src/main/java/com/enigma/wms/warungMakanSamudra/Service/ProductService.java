@@ -1,8 +1,6 @@
 package com.enigma.wms.warungMakanSamudra.Service;
 
-import com.enigma.wms.warungMakanSamudra.DTO.Request.BranchRequest;
 import com.enigma.wms.warungMakanSamudra.DTO.Request.ProductRequest;
-import com.enigma.wms.warungMakanSamudra.DTO.Response.BranchResponse;
 import com.enigma.wms.warungMakanSamudra.DTO.Response.ProductResponse;
 import org.springframework.data.domain.Page;
 
@@ -21,5 +19,5 @@ public interface ProductService {
     Page<ProductResponse> getAllByNameOrPrice(String name , Double maxPrice ,Integer page , Integer size );
 
     List<ProductResponse> getProductByBranchId(String branchId);
-    void deleteProduct(String id);
+    boolean deleteProduct(String id);
 }

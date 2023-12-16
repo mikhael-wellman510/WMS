@@ -18,4 +18,13 @@ public class ProductRequest {
     // masukan branch id
     private String branch_id;
 
+    @Override
+    public String toString() {
+        return "ProductRequest{" +
+                "productCode='" + productCode + '\'' +
+                ", productName='" + productName + '\'' +
+                ", price=" + price +
+                ", branch_id='" + branch_id + '\'' +
+                '}';
+    }
 }

@@ -1,6 +1,5 @@
 package com.enigma.wms.warungMakanSamudra.Service.Impl;
 
-import com.enigma.wms.warungMakanSamudra.DTO.Request.BranchRequest;
 import com.enigma.wms.warungMakanSamudra.DTO.Request.ProductRequest;
 import com.enigma.wms.warungMakanSamudra.DTO.Response.BranchResponse;
 import com.enigma.wms.warungMakanSamudra.DTO.Response.ProductResponse;
@@ -52,7 +51,7 @@ public class ProductServiceImpl implements ProductService {
 
         productRepositori.save(product);
 
-        System.out.println("Hasil product : " + product);
+        System.out.println(productRequest);
 
 
 
@@ -73,7 +72,7 @@ public class ProductServiceImpl implements ProductService {
 
        BranchResponse branchResponse = branchService.getByIdBranch(productRequest.getBranch_id());
         System.out.println("Hasil branch Response : " + branchResponse);
-
+        System.out.println("hasil price : " + productRequest.getPrice());
        return  ProductResponse.builder()
                .productId(product.getId())
                .productPriceId(productPrice.getId())
@@ -169,16 +168,21 @@ public class ProductServiceImpl implements ProductService {
 
         Branch branch = branchRepositori.findById(branchId).orElse(null);
         List<Product> produk= productRepositori.findAllByBranchId(branch);
-        System.out.println(produk);
 
-        ProductPrice productPrice = new ProductPrice();
+       List<ProductPrice>  pp = productPriceRepositori.findAll();
+        System.out.println("hasil" + pp);
+
+        System.out.println(produk);
         return produk.stream()
                 .map(product -> ProductResponse.builder()
+
                         .productId(product.getId())
-                        .productPriceId(productPrice.getId())
+
                         .productCode(product.getProductCode())
                         .productName(product.getProductName())
-                        .price(productPrice.getPrice())
+//                        .price(ProductPrice.)
+
+
                         .build()).toList();
 
     }
@@ -198,8 +202,18 @@ public class ProductServiceImpl implements ProductService {
         return null;
     }
 
-    @Override
-    public void deleteProduct(String id) {
 
+    //Todo -> pakai boolean supaya di controller bisa hasilin true/false
+    @Override
+    public boolean deleteProduct(String id) {
+        Product p = productRepositori.findById(id).orElse(null);
+        System.out.println(p);
+        if (p != null){
+            System.out.println("Succes Delete");
+            productRepositori.deleteById(id);
+            return true;
+        }
+
+        return false;
     }
 }
